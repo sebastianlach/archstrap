@@ -1,0 +1,14 @@
+language: python
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker images
+
+install:
+  - docker build -t slach/archbootrapper .
+
+script:
+  - docker images
