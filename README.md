@@ -1,0 +1,5 @@
+# archbootstap
+
+```shell
+docker build .
+```
