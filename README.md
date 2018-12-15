@@ -1,4 +1,4 @@
-# archbootstap
+# archbootstapper
 
 ```shell
 docker build .
