@@ -8,7 +8,7 @@ before_install:
   - docker images
 
 install:
-  - docker build -t slach/archbootrapper .
+  - docker build -t slach/archstrapper .
 
 script:
   - docker images
