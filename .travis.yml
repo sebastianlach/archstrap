@@ -12,7 +12,7 @@ install:
 
 script:
   - docker images
-  - docker run -it -d --name archstrapper archstrapper
+  - docker run -it -d --rm --name archstrapper archstrapper
   - docker export archstrapper > archstrapper.tar
   - docker stop archstrapper
   - tar tvf archstrapper.tar
