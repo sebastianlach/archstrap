@@ -1,6 +1,6 @@
-# archbootstapper
+# archstrap
 
-![alt text](https://travis-ci.org/sebastianlach/archstrapper.svg?branch=master "Travis CI")
+![alt text](https://travis-ci.org/sebastianlach/archstrap.svg?branch=master "Travis CI")
 
 
 ```shell

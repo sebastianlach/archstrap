@@ -8,12 +8,12 @@ before_install:
   - docker images
 
 install:
-  - docker build -t slach/archstrapper .
+  - docker build -t slach/archstrap .
 
 script:
   - docker images
-  - docker run -it -d --rm --name archstrapper slach/archstrapper
-  - docker export archstrapper > archstrapper.tar
-  - docker stop archstrapper
-  - tar tvf archstrapper.tar
-  - du -sh archstrapper.tar
+  - docker run -it -d --rm --name archstrap slach/archstrap
+  - docker export archstrap > archstrap.tar
+  - docker stop archstrap
+  - tar tvf archstrap.tar
+  - du -sh archstrap.tar
