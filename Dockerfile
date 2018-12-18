@@ -14,5 +14,11 @@ RUN tar zxf archlinux-bootstrap-x86_64.tar.gz
 FROM scratch
 MAINTAINER root@slach.eu
 COPY --from=bootstrap /root.x86_64 .
+
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
+RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
+
+RUN pacman-key --init && pacman-key --populate archlinux
+RUN pacman -Syu --noconfirm
+
 CMD ["bash"]
