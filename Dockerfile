@@ -28,7 +28,7 @@ RUN mv archstrap-etc/.git .git && rmdir archstrap-etc && git reset --hard HEAD
 
 # TODO: check archstrap-etc here
 
-RUN egrep -v '^local/' /etc/pacman.d/pkglist | \
+RUN egrep -Ev '^local/' /etc/pacman.d/pkglist | \
     awk -F'[/ ]' '{ print $2 }' | \
     xargs pacman -Sy --noconfirm
 
