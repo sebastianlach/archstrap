@@ -55,11 +55,10 @@ RUN mv archstrap-etc/.git .git && rmdir archstrap-etc
 
 # install packages from pkglist
 RUN git checkout HEAD /etc/pacman.d/pkglist
-RUN egrep -Ev '^local/' /etc/pacman.d/pkglist | \
-    awk -F'[/ ]' '{ print $2 }' | \
+RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
     xargs pacman -Sy --noconfirm
 
 # add user
 #RUN useradd ${user_login}
 
-CMD ["bash"]
+CMD ["zsh"]
