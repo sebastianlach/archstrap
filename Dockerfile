@@ -20,5 +20,16 @@ RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mi
 
 RUN pacman-key --init && pacman-key --populate archlinux
 RUN pacman -Syu --noconfirm
+RUN pacman -Sy --noconfirm git openssh
+
+WORKDIR /etc
+RUN git clone --no-checkout https://github.com/sebastianlach/archstrap-etc.git
+RUN mv archstrap-etc/.git .git && rmdir archstrap-etc && git reset --hard HEAD
+
+# TODO: check archstrap-etc here
+
+RUN cat /etc/pacman.d/pkglist | egrep -v '^local/' | \
+    cut -d'/' -f2 | cut -d' ' -f1 | \
+    xargs pacman -Sy --noconfirm
 
 CMD ["bash"]
