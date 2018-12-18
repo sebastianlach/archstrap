@@ -8,7 +8,7 @@ before_install:
   - docker images
 
 install:
-  - docker build -t slach/archstrap .
+  - docker build --no-cache -t slach/archstrap .
 
 script:
   - docker images
