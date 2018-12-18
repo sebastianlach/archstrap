@@ -15,5 +15,5 @@ script:
   - docker run -it -d --rm --name archstrap slach/archstrap
   - docker export archstrap > archstrap.tar
   - docker stop archstrap
-  - tar tvf archstrap.tar
+  - tar tvf archstrap.tar | wc -l
   - du -sh archstrap.tar
