@@ -1,9 +1,9 @@
 label: dos
-label-id: 0xeb3096ee
+label-id: 0x1d798dc3
 device: archstrap.img
 unit: sectors
 
-archstrap.img1 : start=        2048, size=      524288, type=83, bootable
-archstrap.img2 : start=      526336, size=    20971520, type=83
-archstrap.img3 : start=    21497856, size=     8388608, type=83
-archstrap.img4 : start=    29886464, size=      524288, type=83
+archstrap.img1 : start=        2048, size=     2097152, type=83, bootable
+archstrap.img2 : start=     2099200, size=    20971520, type=83
+archstrap.img3 : start=    23070720, size=     4194304, type=83
+archstrap.img4 : start=    27265024, size=     2097152, type=83
