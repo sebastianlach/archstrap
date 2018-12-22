@@ -1,0 +1,3 @@
+[submodule "archstrap-etc"]
+	path = archstrap-etc
+	url = https://github.com/sebastianlach/archstrap-etc
