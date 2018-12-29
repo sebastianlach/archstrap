@@ -60,5 +60,12 @@ RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
 
 # add user
 RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${user_login}
+USER ${user_login}
+WORKDIR /home/${user_login}
+RUN git clone --no-checkout https://github.com/sebastianlach/archstrap-home.git
+RUN mv archstrap-home/.git .git && \
+    rmdir archstrap-home && \
+    git reset --hard HEAD && \
+    git submodule update --init --recursive
 
 CMD ["zsh"]
