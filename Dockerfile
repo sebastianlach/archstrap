@@ -34,7 +34,7 @@ RUN tar zxf ${archlinux_bootstrap_filename}
 # -----------------------------------------------------------------------------
 FROM scratch
 MAINTAINER root@slach.eu
-ARG user_login=archuser
+ARG user_login=archstrap
 
 # populate filesystem from bootstrap
 COPY --from=bootstrap /root.x86_64 .
@@ -59,6 +59,6 @@ RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
     xargs pacman -Sy --noconfirm
 
 # add user
-#RUN useradd ${user_login}
+RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${user_login}
 
 CMD ["zsh"]
