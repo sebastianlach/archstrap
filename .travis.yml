@@ -8,9 +8,7 @@ before_install:
   - docker images
 
 install:
-  - docker build --no-cache \
-        --build-arg user_login=slach \
-        -t slach/archstrap .
+  - docker build --no-cache --build-arg user_login=slach -t slach/archstrap .
 
 script:
   - docker images
