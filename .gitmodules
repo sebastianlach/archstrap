@@ -1,6 +1,6 @@
 [submodule "archstrap-etc"]
-	path = archstrap-etc
+	path = etc
 	url = https://github.com/sebastianlach/archstrap-etc
 [submodule "archstrap-home"]
-	path = archstrap-home
+	path = home
 	url = https://github.com/sebastianlach/archstrap-home
