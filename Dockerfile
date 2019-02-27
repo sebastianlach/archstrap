@@ -60,7 +60,6 @@ RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
 
 # add user
 RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${user_login}
-RUN passwd arch -p ${user_login}
 USER ${user_login}
 WORKDIR /home/${user_login}
 RUN git clone --no-checkout https://github.com/sebastianlach/archstrap-home.git
