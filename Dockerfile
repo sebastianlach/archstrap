@@ -5,7 +5,7 @@ FROM alpine as bootstrap
 MAINTAINER root@slach.eu
 ARG archlinux_mirror_url=http://mirrors.edge.kernel.org/archlinux
 ARG archlinux_mirror_repo=${archlinux_mirror_url}/$repo/os/$arch
-ARG archlinux_bootstrap_filename=archlinux-bootstrap-2018.12.01-x86_64.tar.gz
+ARG archlinux_bootstrap_filename=archlinux-bootstrap-2019.03.01-x86_64.tar.gz
 ARG archlinux_bootstrap_uri=iso/latest/${archlinux_bootstrap_filename}
 ARG archlinux_bootstrap_url=${archlinux_mirror_url}/${archlinux_bootstrap_uri}
 
