@@ -19,7 +19,7 @@ RUN wget -O ${archlinux_bootstrap_filename} ${archlinux_bootstrap_url}
 # verify archlinux bootstrap signature
 COPY key /root/key
 RUN gpg --import /root/key/*.gpg
-RUN gpg --verify ${archlinux_bootstrap_filename}.sig ${archlinux_bootstrap_filename}
+RUN gpg --keyserver-options auto-key-retrieve --verify ${archlinux_bootstrap_filename}.sig ${archlinux_bootstrap_filename}
 
 # verify checksums
 RUN md5sum ${archlinux_bootstrap_filename}
