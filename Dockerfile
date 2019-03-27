@@ -17,8 +17,8 @@ RUN wget -O ${archlinux_bootstrap_filename}.sig ${archlinux_bootstrap_url}.sig
 RUN wget -O ${archlinux_bootstrap_filename} ${archlinux_bootstrap_url}
 
 # verify archlinux bootstrap signature
-ADD pierre.gpg .
-RUN gpg --import pierre.gpg
+COPY key /root/key
+RUN gpg --import /root/key/*.gpg
 RUN gpg --verify ${archlinux_bootstrap_filename}.sig ${archlinux_bootstrap_filename}
 
 # verify checksums
