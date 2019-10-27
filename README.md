@@ -1,6 +1,6 @@
 # archstrap
 
-![alt text](https://travis-ci.org/sebastianlach/archstrap.svg?branch=master "Travis CI")
+[![Build Status](https://travis-ci.org/sebastianlach/archstrap.svg?branch=master)](https://travis-ci.org/sebastianlach/archstrap)
 
 
 ```shell
