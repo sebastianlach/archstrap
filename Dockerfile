@@ -4,8 +4,8 @@
 FROM alpine as bootstrap
 MAINTAINER root@slach.eu
 ARG archlinux_mirror_url=https://mirror.rackspace.com/archlinux
-ARG archlinux_bootstrap_filename=archlinux-bootstrap-2019.10.01-x86_64.tar.gz
-ARG archlinux_bootstrap_uri=iso/2019.10.01/${archlinux_bootstrap_filename}
+ARG archlinux_bootstrap_filename=archlinux-2020.03.01-x86_64.iso
+ARG archlinux_bootstrap_uri=iso/2020.03.01/${archlinux_bootstrap_filename}
 ARG archlinux_bootstrap_url=${archlinux_mirror_url}/${archlinux_bootstrap_uri}
 
 # install required packages
