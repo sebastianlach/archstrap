@@ -4,7 +4,7 @@
 FROM alpine as bootstrap
 MAINTAINER root@slach.eu
 ARG archlinux_mirror_url=https://mirror.rackspace.com/archlinux
-ARG archlinux_bootstrap_filename=archlinux-bootstrap-2020.07.01-x86_64.tar.gz
+ARG archlinux_bootstrap_filename=archlinux-bootstrap-2020.09.01-x86_64.tar.gz
 ARG archlinux_bootstrap_uri=iso/latest/${archlinux_bootstrap_filename}
 ARG archlinux_bootstrap_url=${archlinux_mirror_url}/${archlinux_bootstrap_uri}
 
@@ -16,9 +16,14 @@ RUN wget -O ${archlinux_bootstrap_filename}.sig ${archlinux_bootstrap_url}.sig
 RUN wget -O ${archlinux_bootstrap_filename} ${archlinux_bootstrap_url}
 
 # verify archlinux bootstrap signature
-COPY key /root/key
-RUN gpg --import /root/key/*.gpg
-RUN gpg --keyserver-options auto-key-retrieve --verify ${archlinux_bootstrap_filename}.sig ${archlinux_bootstrap_filename}
+RUN gpg --locate-keys\
+        pierre@archlinux.de\
+        allan@archlinux.org\
+        bpiotrowski@archlinux.org\
+        anthraxx@archlinux.org
+RUN gpg --keyserver-options auto-key-retrieve\
+        --verify ${archlinux_bootstrap_filename}.sig\
+        ${archlinux_bootstrap_filename}
 
 # verify checksums
 RUN md5sum ${archlinux_bootstrap_filename}
