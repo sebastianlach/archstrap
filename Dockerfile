@@ -4,16 +4,17 @@
 FROM alpine as bootstrap
 MAINTAINER root@slach.eu
 ARG archlinux_mirror_url=https://mirror.rackspace.com/archlinux
-ARG archlinux_bootstrap_filename=archlinux-bootstrap-2020.09.01-x86_64.tar.gz
-ARG archlinux_bootstrap_uri=iso/latest/${archlinux_bootstrap_filename}
-ARG archlinux_bootstrap_url=${archlinux_mirror_url}/${archlinux_bootstrap_uri}
 
 # install required packages
 RUN apk add --no-cache gnupg
 
+RUN wget -q -O - ${archlinux_mirror_url}/iso/latest/\
+    | egrep -Eo 'archlinux-bootstrap-[^<>"]*'\
+    | sort -n | head -n1 > bootstrap.url
+
 # download archlinux bootstrap
-RUN wget -O ${archlinux_bootstrap_filename}.sig ${archlinux_bootstrap_url}.sig
-RUN wget -O ${archlinux_bootstrap_filename} ${archlinux_bootstrap_url}
+RUN cat bootstrap.url | xargs -I% wget ${archlinux_mirror_url}/iso/latest/%
+RUN cat bootstrap.url | xargs -I% wget ${archlinux_mirror_url}/iso/latest/%.sig
 
 # verify archlinux bootstrap signature
 RUN gpg --locate-keys\
