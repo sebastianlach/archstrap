@@ -63,7 +63,7 @@ RUN mv archstrap-etc/.git .git && rmdir archstrap-etc
 # install packages from pkglist
 RUN git checkout HEAD /etc/pacman.d/pkglist
 RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
-    xargs pacman -Sy --noconfirm
+    xargs pacman -Sy --noconfirm && pacman -Scc --noconfirm
 
 # add user
 RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${user_login}
