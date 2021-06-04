@@ -8,13 +8,15 @@ ARG archlinux_mirror_url=https://mirror.rackspace.com/archlinux
 # install required packages
 RUN apk add --no-cache gnupg
 
+# discover latest boostrap archive
 RUN wget -q -O - ${archlinux_mirror_url}/iso/latest/\
     | egrep -Eo 'archlinux-bootstrap-[^<>"]*'\
-    | sort -n | head -n1 > bootstrap.url
+    | sort -n | head -n1\
+    | xargs -I% echo ${archlinux_mirror_url}/iso/latest/% > bootstrap.url
 
 # download archlinux bootstrap
-RUN cat bootstrap.url | xargs -I% wget ${archlinux_mirror_url}/iso/latest/%
-RUN cat bootstrap.url | xargs -I% wget ${archlinux_mirror_url}/iso/latest/%.sig
+RUN xargs -I% wget -O bootstrap.tar.gz % < bootstrap.url
+RUN xargs -I% wget -O bootstrap.tar.gz.sig %.sig < bootstrap.url
 
 # verify archlinux bootstrap signature
 RUN gpg --locate-keys\
@@ -23,15 +25,15 @@ RUN gpg --locate-keys\
         bpiotrowski@archlinux.org\
         anthraxx@archlinux.org
 RUN gpg --keyserver-options auto-key-retrieve\
-        --verify ${archlinux_bootstrap_filename}.sig\
-        ${archlinux_bootstrap_filename}
+        --verify bootstrap.tar.gz.sig\
+        bootstrap.tar.gz
 
 # verify checksums
-RUN md5sum ${archlinux_bootstrap_filename}
-RUN sha1sum ${archlinux_bootstrap_filename}
+RUN md5sum boostrap.tar.gz
+RUN sha1sum bootstrap.tar.gz
 
 # extract archlinux bootstrap archive
-RUN tar zxf ${archlinux_bootstrap_filename}
+RUN tar zxf boostrap.tar.gz
 
 
 # -----------------------------------------------------------------------------
