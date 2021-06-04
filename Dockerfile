@@ -8,7 +8,7 @@ ARG archlinux_mirror_url=https://mirror.rackspace.com/archlinux
 # install required packages
 RUN apk add --no-cache gnupg
 
-# discover latest boostrap archive
+# discover latest bootrap archive
 RUN wget -q -O - ${archlinux_mirror_url}/iso/latest/\
     | egrep -Eo 'archlinux-bootstrap-[^<>"]*'\
     | sort -n | head -n1\
@@ -29,11 +29,11 @@ RUN gpg --keyserver-options auto-key-retrieve\
         bootstrap.tar.gz
 
 # verify checksums
-RUN md5sum boostrap.tar.gz
+RUN md5sum bootrap.tar.gz
 RUN sha1sum bootstrap.tar.gz
 
 # extract archlinux bootstrap archive
-RUN tar zxf boostrap.tar.gz
+RUN tar zxf bootrap.tar.gz
 
 
 # -----------------------------------------------------------------------------
