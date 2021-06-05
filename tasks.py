@@ -18,7 +18,7 @@ def build(context, cache=False):
 @task
 def export(context):
     """
-    docker run -it -d --rm --name archstrap slach/archstrap
+    docker run -it -d --rm --name archstrap slach/archstrap sh
     docker export archstrap > archstrap.tar
     docker stop archstrap
     """
