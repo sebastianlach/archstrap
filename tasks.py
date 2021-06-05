@@ -11,7 +11,7 @@ def clean(context):
 @task
 def build(context, docs=False):
     """
-    docker build --build-arg user_login=slach -t slach/archstrap .
+    docker build --rm --no-cache --build-arg user_login=slach -t slach/archstrap .
     """
     run(context, build.__doc__)
 
@@ -47,7 +47,7 @@ def extract(context, docs=False):
 @task
 def images(context):
     """
-    docker run -it -v $PWD:/data --rm --privileged slach/genextimage root.tar root.ext4 10G
-    docker run -it -v $PWD:/data --rm --privileged slach/genextimage home.tar home.ext4 2G
+    docker run -v $PWD:/data --rm --privileged slach/genextimage root.tar root.ext4 10G
+    docker run -v $PWD:/data --rm --privileged slach/genextimage home.tar home.ext4 2G
     """
     run(context, images.__doc__)
