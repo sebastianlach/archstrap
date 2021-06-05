@@ -51,7 +51,6 @@ RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
 RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
 
 # pacman configuration
-RUN pacman -U --noconfirm /var/cache/pacman/pkg/pacman-*.tar.zst
 RUN pacman-key --init && pacman-key --populate archlinux
 RUN pacman -Syu --noconfirm && pacman -Sy --noconfirm git reflector
 RUN reflector --latest 16 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
