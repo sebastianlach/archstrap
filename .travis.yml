@@ -18,4 +18,4 @@ script:
   - invoke extract
   - invoke images
   - invoke download
-  - du -h {boot,root,home}.img
+  - du -h *.img *.tar
