@@ -40,7 +40,6 @@ ARG user_login=archstrap
 # populate filesystem from bootstrap
 WORKDIR /
 COPY --from=builder /root.x86_64 .
-RUN touch /keep && find /etc
 
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
