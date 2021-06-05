@@ -28,6 +28,8 @@ RUN gpg --keyserver-options auto-key-retrieve\
         --verify bootstrap.tar.gz.sig\
         bootstrap.tar.gz
 
+RUN tar -zxvf bootstrap.tar.gz
+
 # -----------------------------------------------------------------------------
 # 2nd stage
 # -----------------------------------------------------------------------------
@@ -37,9 +39,8 @@ ARG user_login=archstrap
 
 # populate filesystem from bootstrap
 WORKDIR /
-COPY --from=builder bootstrap.tar.gz bootstrap.tar.gz
-RUN tar -zxvf bootstrap.tar.gz --strip-components=2 -C /
-RUN rm -rf bootstrap.tar.gz
+COPY --from=builder /root.x86_64 .
+RUN touch /keep && find /etc
 
 FROM scratch
 
