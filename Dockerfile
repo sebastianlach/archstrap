@@ -29,7 +29,7 @@ RUN gpg --keyserver-options auto-key-retrieve\
         bootstrap.tar.gz
 
 # extract archlinux bootstrap archive
-RUN tar -zxvf bootstrap.tar.gz -C .
+RUN tar -zxvf bootstrap.tar.gz -C /
 
 
 # -----------------------------------------------------------------------------
