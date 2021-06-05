@@ -36,12 +36,13 @@ def download(context):
 @task
 def extract(context, docs=False):
     """
+    mkdir -p data
     tar -xvf archstrap.tar -C data && rm -rf archstrap.tar
     tar -cvf root.tar --exclude=home data
     tar -cvf home.tar --include=home data
     rm -rf data
     """
-    run(c, extract.__doc__)
+    run(context, extract.__doc__)
 
 @task
 def images(context):
