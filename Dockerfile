@@ -33,7 +33,7 @@ RUN md5sum bootstrap.tar.gz
 RUN sha1sum bootstrap.tar.gz
 
 # extract archlinux bootstrap archive
-RUN tar zxf bootstrap.tar.gz
+RUN tar zxf bootstrap.tar.gz -C .
 
 
 # -----------------------------------------------------------------------------
