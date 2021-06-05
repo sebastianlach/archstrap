@@ -39,7 +39,7 @@ def extract(context, docs=False):
     mkdir -p data
     tar -xvf archstrap.tar -C data && rm -rf archstrap.tar
     tar -cvf root.tar --exclude=home data
-    tar -cvf home.tar --include=home data
+    tar -cvf home.tar data/home
     rm -rf data
     """
     run(context, extract.__doc__)
