@@ -5,16 +5,17 @@ services:
   - docker
 
 before_install:
+  - pip install invoke
   - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
   - docker images
 
 install:
-  - docker build --no-cache --build-arg user_login=slach -t slach/archstrap .
+  - invoke build
+  - docker images
 
 script:
-  - docker images
-  - docker run -it -d --rm --name archstrap slach/archstrap
-  - docker export archstrap > archstrap.tar
-  - docker stop archstrap
-  - tar tvf archstrap.tar | wc -l
-  - du -sh archstrap.tar
+  - invoke export
+  - invoke extract
+  - invoke images
+  - invoke download
+  - du -h {boot,root,home}.img
