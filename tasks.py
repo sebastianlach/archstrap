@@ -9,11 +9,11 @@ def clean(context):
     context.run("rm -rf data {archstrap,root,home}.tar {boot,root,home}.img")
 
 @task
-def build(context, docs=False):
+def build(context, cache=False):
     """
-    docker build --rm --no-cache --build-arg user_login=slach -t slach/archstrap .
+    docker build {} --rm --build-arg user_login=slach -t slach/archstrap .
     """
-    run(context, build.__doc__)
+    run(context, build.__doc__.format('--no-cache' if not cache else ''))
 
 @task
 def export(context):

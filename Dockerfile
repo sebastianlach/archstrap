@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------
 # 1st stage
 # -----------------------------------------------------------------------------
-FROM alpine as builder
+FROM alpine AS builder
 MAINTAINER root@slach.eu
 ARG archlinux_mirror_url=https://mirror.rackspace.com/archlinux
 
@@ -35,12 +35,17 @@ RUN tar -zxvf bootstrap.tar.gz -C /
 # -----------------------------------------------------------------------------
 # 2nd stage
 # -----------------------------------------------------------------------------
-FROM scratch
+FROM scratch AS build
 MAINTAINER root@slach.eu
 ARG user_login=archstrap
 
 # populate filesystem from bootstrap
 COPY --from=builder /root.x86_64 /
+RUN find /etc
+
+# 3rd stage
+FROM scratch
+MAINTAINER root@slach.eu
 
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
