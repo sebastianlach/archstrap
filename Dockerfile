@@ -38,7 +38,8 @@ ARG user_login=archstrap
 # populate filesystem from bootstrap
 WORKDIR /
 COPY --from=builder bootstrap.tar.gz bootstrap.tar.gz
-RUN tar -zxvf bootstrap.tar.gz --strip-components=1 && rm -rf bootstrap.tar.gz
+RUN tar -zxvf bootstrap.tar.gz --strip-components=2 -C /
+RUN rm -rf bootstrap.tar.gz
 
 FROM scratch
 
