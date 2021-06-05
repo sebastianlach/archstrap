@@ -42,8 +42,6 @@ WORKDIR /
 COPY --from=builder /root.x86_64 .
 RUN touch /keep && find /etc
 
-FROM scratch
-
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
 RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
