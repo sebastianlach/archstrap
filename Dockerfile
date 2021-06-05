@@ -28,10 +28,6 @@ RUN gpg --keyserver-options auto-key-retrieve\
         --verify bootstrap.tar.gz.sig\
         bootstrap.tar.gz
 
-# extract archlinux bootstrap archive
-RUN tar -zxvf bootstrap.tar.gz -C /
-
-
 # -----------------------------------------------------------------------------
 # 2nd stage
 # -----------------------------------------------------------------------------
@@ -40,13 +36,11 @@ MAINTAINER root@slach.eu
 ARG user_login=archstrap
 
 # populate filesystem from bootstrap
-COPY --from=builder /root.x86_64 /
-RUN touch /keep
-RUN find /etc
+WORKDIR /
+COPY --from=builder bootstrap.tar.gz bootstrap.tar.gz
+RUN tar -zxvf bootstrap.tar.gz --strip-components=1 && rm -rf bootstrap.tar.gz
 
-# 3rd stage
 FROM scratch
-MAINTAINER root@slach.eu
 
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
