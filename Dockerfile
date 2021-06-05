@@ -28,10 +28,6 @@ RUN gpg --keyserver-options auto-key-retrieve\
         --verify bootstrap.tar.gz.sig\
         bootstrap.tar.gz
 
-# verify checksums
-RUN md5sum bootstrap.tar.gz
-RUN sha1sum bootstrap.tar.gz
-
 # extract archlinux bootstrap archive
 RUN tar zxf bootstrap.tar.gz -C .
 
