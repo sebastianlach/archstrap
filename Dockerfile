@@ -44,7 +44,7 @@ MAINTAINER root@slach.eu
 ARG user_login=archstrap
 
 # populate filesystem from bootstrap
-COPY --from=bootstrap /root.x86_64 .
+COPY --from=bootstrap /root.x86_64 /
 
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
