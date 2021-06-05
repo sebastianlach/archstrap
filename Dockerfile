@@ -41,6 +41,7 @@ ARG user_login=archstrap
 
 # populate filesystem from bootstrap
 COPY --from=builder /root.x86_64 /
+RUN touch /keep
 RUN find /etc
 
 # 3rd stage

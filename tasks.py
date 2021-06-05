@@ -11,7 +11,7 @@ def clean(context):
 @task
 def build(context, cache=False):
     """
-    docker build {} --rm --build-arg user_login=slach -t slach/archstrap .
+    docker build {} --rm --target build -t slach/archstrap .
     """
     run(context, build.__doc__.format('--no-cache' if not cache else ''))
 
