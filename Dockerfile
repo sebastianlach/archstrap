@@ -39,7 +39,6 @@ MAINTAINER root@slach.eu
 ARG user_login=archstrap
 
 # populate filesystem from bootstrap
-USER root
 WORKDIR /
 RUN ls -la . | echo
 COPY --from=0 /root.x86_64/ .
