@@ -1,5 +1,6 @@
 language: shell
-sudo: required
+os: linux
+dist: xential
 
 services:
   - docker

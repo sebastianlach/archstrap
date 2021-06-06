@@ -41,8 +41,8 @@ ARG user_login=archstrap
 # populate filesystem from bootstrap
 USER root
 WORKDIR /
-COPY --from=builder /root.x86_64/ .
-RUN ls -l . | echo
+COPY --from=0 /root.x86_64/ .
+RUN ls -la . | echo
 
 FROM scratch
 
