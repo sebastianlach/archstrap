@@ -29,7 +29,8 @@ RUN gpg --keyserver-options auto-key-retrieve\
         --verify bootstrap.tar.gz.sig\
         bootstrap.tar.gz
 
-RUN tar -zxvf bootstrap.tar.gz
+RUN tar -C / -zxvf bootstrap.tar.gz
+RUN ls -l /
 
 # -----------------------------------------------------------------------------
 # 2nd stage
