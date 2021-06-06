@@ -35,7 +35,9 @@ RUN tar -zxvf bootstrap.tar.gz
 # 2nd stage
 # -----------------------------------------------------------------------------
 FROM alpine AS snapshot
-COPY --from=0 /root.x86_64 .
+RUN ls -l /
+COPY --from=builder /root.x86_64 .
+RUN touch /keep
 RUN whoami
 RUN df -h
 RUN ls -l /
