@@ -34,8 +34,9 @@ RUN tar -zxf bootstrap.tar.gz
 # -----------------------------------------------------------------------------
 # 2nd stage
 # -----------------------------------------------------------------------------
-FROM scratch AS snapshot
+FROM busybox AS snapshot
 COPY --from=0 /root.x86_64/ /
+RUN ls -l /etc/pacman*
 
 FROM scratch
 
