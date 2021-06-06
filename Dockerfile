@@ -35,7 +35,6 @@ RUN ls -l /root.x86_64
 # 2nd stage
 # -----------------------------------------------------------------------------
 FROM scratch
-RUN ls -l /
 COPY --from=0 /root.x86_64 /bootstrap
 RUN find /bootstrap
 
