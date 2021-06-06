@@ -18,5 +18,5 @@ script:
   - invoke extract
   - invoke images
   - invoke download
-  - du -h *.img *.ta
+  - du -h *.img *.tar *.ext4
   - docker run --it --rm slach/archstrap ls -l /
