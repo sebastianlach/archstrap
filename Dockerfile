@@ -37,11 +37,10 @@ RUN ls -l /root.x86_64
 # -----------------------------------------------------------------------------
 FROM alpine AS snapshot
 RUN ls -l /
-COPY --from=builder /root.x86_64 bootstrap
-RUN ls -l /
+COPY --from=builder /root.x86_64 /bootstrap
 RUN ls -l /bootstrap
-RUN df -h
-RUN ls -l /
+RUN find /bootstrap/etc
+
 
 FROM scratch
 
