@@ -34,7 +34,7 @@ RUN tar -zxf bootstrap.tar.gz
 # -----------------------------------------------------------------------------
 # 2nd stage
 # -----------------------------------------------------------------------------
-FROM scratch AS build
+FROM scratch AS snapshot
 COPY --from=0 /root.x86_64/ /
 
 FROM scratch
