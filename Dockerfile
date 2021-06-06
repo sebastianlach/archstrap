@@ -30,7 +30,7 @@ RUN gpg --keyserver-options auto-key-retrieve\
         bootstrap.tar.gz
 
 RUN tar -C / -zxvf bootstrap.tar.gz
-RUN ls -l /
+RUN ls -l /root.x86_64
 
 # -----------------------------------------------------------------------------
 # 2nd stage
