@@ -39,11 +39,8 @@ MAINTAINER root@slach.eu
 ARG user_login=archstrap
 
 # populate filesystem from bootstrap
-WORKDIR /
-ADD requirements.txt .
-RUN ls -la .
-COPY --from=0 /root.x86_64/ .
-RUN ls -la .
+ADD requirements.txt /
+COPY --from=0 /root.x86_64/ /
 
 FROM scratch
 
