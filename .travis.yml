@@ -5,9 +5,8 @@ services:
   - docker
 
 before_install:
-  - pip install --user invoke
+  - pip install --user -r requirements.txt
   - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-  - docker images
 
 install:
   - invoke build
