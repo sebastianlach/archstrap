@@ -34,9 +34,9 @@ RUN tar -zxf bootstrap.tar.gz
 # -----------------------------------------------------------------------------
 # 2nd stage
 # -----------------------------------------------------------------------------
-FROM busybox AS snapshot
+FROM alpine AS snapshot
 COPY --from=0 /root.x86_64/ /
-RUN ls -l /etc/pacman*
+RUN ls -l /etc
 
 FROM scratch
 
