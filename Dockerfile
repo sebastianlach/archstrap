@@ -35,7 +35,6 @@ RUN tar -C / -zxvf bootstrap.tar.gz
 # -----------------------------------------------------------------------------
 FROM scratch AS build
 COPY --from=0 /root.x86_64 /bootstrap
-RUN /bootstrap/usr/bin/find /bootstrap
 
 
 FROM scratch
