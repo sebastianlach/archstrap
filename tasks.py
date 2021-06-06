@@ -40,6 +40,7 @@ def extract(context, docs=False):
     tar -xf archstrap.tar -C data && rm -rf archstrap.tar
     tar -cf root.tar --exclude=home data
     tar -cf home.tar data/home
+    rm -rf data
     """
     run(context, extract.__doc__)
 
