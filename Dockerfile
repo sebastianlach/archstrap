@@ -35,11 +35,6 @@ RUN tar -zxf bootstrap.tar.gz
 # 2nd stage
 # -----------------------------------------------------------------------------
 FROM scratch AS build
-MAINTAINER root@slach.eu
-ARG user_login=archstrap
-
-# populate filesystem from bootstrap
-ADD requirements.txt /
 COPY --from=0 /root.x86_64/ /
 
 FROM scratch
