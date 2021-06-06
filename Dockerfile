@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------
 # 1st stage
 # -----------------------------------------------------------------------------
-FROM alpine AS builder
+FROM alpine
 MAINTAINER root@slach.eu
 ARG archlinux_mirror_url=https://mirror.rackspace.com/archlinux
 
@@ -16,7 +16,6 @@ RUN wget -q -O - ${archlinux_mirror_url}/iso/latest/\
 
 # download archlinux bootstrap
 RUN xargs -I% wget -O bootstrap.tar.gz % < bootstrap.url
-#COPY archlinux-bootstrap-2021.06.01-x86_64.tar.gz bootstrap.tar.gz
 RUN xargs -I% wget -O bootstrap.tar.gz.sig %.sig < bootstrap.url
 
 # verify archlinux bootstrap signature
@@ -35,10 +34,10 @@ RUN ls -l /root.x86_64
 # -----------------------------------------------------------------------------
 # 2nd stage
 # -----------------------------------------------------------------------------
-FROM alpine AS snapshot
+FROM scratch
 RUN ls -l /
-COPY --from=builder /root.x86_64 /
-RUN ls -l /etc
+COPY --from=0 /root.x86_64 /bootstrap
+RUN find /bootstrap
 
 
 FROM scratch
