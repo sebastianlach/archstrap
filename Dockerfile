@@ -16,6 +16,7 @@ RUN wget -q -O - ${archlinux_mirror_url}/iso/latest/\
 
 # download archlinux bootstrap
 RUN xargs -I% wget -O bootstrap.tar.gz % < bootstrap.url
+#COPY archlinux-bootstrap-2021.06.01-x86_64.tar.gz bootstrap.tar.gz
 RUN xargs -I% wget -O bootstrap.tar.gz.sig %.sig < bootstrap.url
 
 # verify archlinux bootstrap signature
@@ -40,6 +41,9 @@ ARG user_login=archstrap
 # populate filesystem from bootstrap
 WORKDIR /
 COPY --from=builder /root.x86_64 .
+RUN echo `ls /etc`
+
+FROM scratch
 
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
