@@ -40,9 +40,10 @@ ARG user_login=archstrap
 
 # populate filesystem from bootstrap
 WORKDIR /
-RUN ls -la . | echo
+ADD requirements.txt .
+RUN ls -la .
 COPY --from=0 /root.x86_64/ .
-RUN ls -la . | echo
+RUN ls -la .
 
 FROM scratch
 
