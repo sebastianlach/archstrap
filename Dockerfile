@@ -39,8 +39,7 @@ FROM alpine AS snapshot
 RUN ls -l /
 COPY --from=builder /root.x86_64 bootstrap
 RUN ls -l /
-RUN touch /keep
-RUN whoami
+RUN ls -l /bootstrap
 RUN df -h
 RUN ls -l /
 
