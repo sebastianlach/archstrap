@@ -36,7 +36,8 @@ RUN tar -zxf bootstrap.tar.gz
 # -----------------------------------------------------------------------------
 FROM alpine AS snapshot
 COPY --from=0 /root.x86_64/ /
-RUN ls -l /etc
+RUN df -h
+RUN ls -l /
 
 FROM scratch
 
