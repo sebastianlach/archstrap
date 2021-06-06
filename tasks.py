@@ -11,7 +11,7 @@ def clean(context):
 @task
 def build(context, cache=False):
     """
-    docker build {} --target snapshot --tag slach/archstrap .
+    docker build {} --tag slach/archstrap .
     """
     run(context, build.__doc__.format('--no-cache' if not cache else ''))
 
