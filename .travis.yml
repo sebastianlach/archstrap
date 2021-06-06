@@ -19,4 +19,4 @@ script:
   - invoke images
   - invoke download
   - du -h *.img *.tar *.ext4
-  - docker run -it --rm slach/archstrap ls -l /
+  - docker run -it --rm slach/archstrap ls -la /

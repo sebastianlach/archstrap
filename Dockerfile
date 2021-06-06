@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------
 # 1st stage
 # -----------------------------------------------------------------------------
-FROM alpine
+FROM alpine AS builder
 MAINTAINER root@slach.eu
 ARG archlinux_mirror_url=https://mirror.rackspace.com/archlinux
 
@@ -29,14 +29,13 @@ RUN gpg --keyserver-options auto-key-retrieve\
         bootstrap.tar.gz
 
 RUN tar -C / -zxvf bootstrap.tar.gz
-RUN ls -l /root.x86_64
 
 # -----------------------------------------------------------------------------
 # 2nd stage
 # -----------------------------------------------------------------------------
-FROM scratch
+FROM scratch AS build
 COPY --from=0 /root.x86_64 /bootstrap
-RUN find /bootstrap
+RUN /bootstrap/usr/bin/find /bootstrap
 
 
 FROM scratch
