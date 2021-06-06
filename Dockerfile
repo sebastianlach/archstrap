@@ -37,7 +37,8 @@ RUN ls -l /root.x86_64
 # -----------------------------------------------------------------------------
 FROM alpine AS snapshot
 RUN ls -l /
-COPY --from=builder /root.x86_64 .
+COPY --from=builder /root.x86_64 bootstrap
+RUN ls -l /
 RUN touch /keep
 RUN whoami
 RUN df -h
