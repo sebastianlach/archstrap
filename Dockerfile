@@ -37,9 +37,8 @@ RUN ls -l /root.x86_64
 # -----------------------------------------------------------------------------
 FROM alpine AS snapshot
 RUN ls -l /
-COPY --from=builder /root.x86_64 /bootstrap
-RUN ls -l /bootstrap
-RUN find /bootstrap/etc
+COPY --from=builder /root.x86_64 /
+RUN ls -l /etc
 
 
 FROM scratch
