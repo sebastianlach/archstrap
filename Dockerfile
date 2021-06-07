@@ -40,6 +40,8 @@ COPY --from=0 /root.x86_64 /
 
 FROM bootstrap
 
+RUN ls -la /etc
+
 # pacman mirrors
 #RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
 #RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
