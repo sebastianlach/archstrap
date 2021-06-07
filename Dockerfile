@@ -47,9 +47,10 @@ FROM bootstrap AS build
 # pacman mirrors
 RUN find /etc
 RUN stat /etc
-RUN cat /etc/pacman.conf
+RUN cat /etc/pacman.conf | wc -l
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
 RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
+RUN cat /etc/pacman.conf
 
 # pacman configuration
 RUN pacman-key --init && pacman-key --populate archlinux
