@@ -28,7 +28,7 @@ RUN gpg --keyserver-options auto-key-retrieve\
         --verify bootstrap.tar.gz.sig\
         bootstrap.tar.gz
 
-RUN tar -C / -zxvf bootstrap.tar.gz
+RUN tar -C / -zxf bootstrap.tar.gz
 
 ###############################################################################
 
@@ -38,7 +38,7 @@ COPY --from=0 /root.x86_64 /
 
 ###############################################################################
 
-FROM bootstrap AS build
+FROM bootstrap
 
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
