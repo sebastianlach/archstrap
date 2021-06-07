@@ -55,6 +55,7 @@ RUN cat /etc/pacman.conf
 # pacman configuration
 RUN whereis pacman-key
 RUN file /usr/bin/pacman-key
+RUN pacman-db-upgrade
 RUN pacman -Syu --noconfirm && pacman -Sy --noconfirm git reflector
 RUN reflector --latest 16 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
