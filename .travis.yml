@@ -16,8 +16,8 @@ install:
 script:
   - invoke export
   - invoke extract
-  - invoke images
-  - invoke download
+  # - invoke images
+  # - invoke download
   - du -h *.img *.tar *.ext4
   - docker save slach/archstrap > rootfs.tar
   - tar -tzvf rootfs.tar
