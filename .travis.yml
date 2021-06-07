@@ -16,6 +16,10 @@ install:
 script:
   - invoke export
   - invoke extract
+  - ls -lh *.tar
+  - rm -rf *.tar
   - invoke images
   - invoke download
-  - ls -lh *.tar *.img
+  - ls -lh *.img
+  - cat boot.img root.img home.img >> archstrap.img
+  - ls -lh archstrap.img
