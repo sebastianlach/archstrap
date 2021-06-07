@@ -34,7 +34,6 @@ RUN tar -C / -zxf bootstrap.tar.gz
 
 FROM scratch AS bootstrap
 COPY --from=0 /root.x86_64 /bootstrap
-COPY --from=0 /root.x86_64 /
 
 ###############################################################################
 
