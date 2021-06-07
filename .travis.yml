@@ -21,5 +21,8 @@ script:
   - invoke images
   - invoke download
   - ls -lh *.img
-  - cat boot.img root.img home.img >> archstrap.img
-  - ls -lh archstrap.img
+  - touch disk.img
+  - dd if=boot.img of=disk.img bs=1M oflag=append conv=notrunc
+  - dd if=root.img of=disk.img bs=1M oflag=append conv=notrunc
+  - dd if=home.img of=disk.img bs=1M oflag=append conv=notrunc
+  - ls -lh *.img
