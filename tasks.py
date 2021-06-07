@@ -39,8 +39,8 @@ def extract(context, docs=False):
     """
     mkdir -p data
     tar -xf archstrap.tar -C data && rm -rf archstrap.tar
-    tar -cf root.tar --exclude=home data
-    tar -cf home.tar data/home
+    tar -cf root.tar --exclude=home -C data .
+    tar -cf home.tar -C data/home .
     """
     run(context, extract.__doc__)
 
