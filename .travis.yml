@@ -6,9 +6,6 @@ services:
   - docker
 
 before_install:
-  - sudo apt update -y
-  - sudo apt install --only-upgrade docker-ce -y
-  - docker version
   - pip install --user -r requirements.txt
   - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
 
@@ -22,7 +19,3 @@ script:
   - invoke images
   - invoke download
   - du -h *.img *.tar *.ext4
-  - docker create --name test slach/archstrap
-  - docker cp test:/bootstrap/etc/pacman.conf pacman.conf
-  - docker rm test
-  - cat pacman.conf | wc -l
