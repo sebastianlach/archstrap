@@ -11,7 +11,7 @@ def clean(context):
 @task
 def build(context, cache=False):
     """
-    docker build {} --target build --tag slach/archstrap --build-arg archlinux_mirror_url=https://mirrors.n-ix.net/archlinux .
+    docker build {} --target build --tag slach/archstrap --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux .
     """
     run(context, build.__doc__.format('--no-cache' if not cache else ''))
 
