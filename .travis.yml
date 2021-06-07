@@ -21,3 +21,4 @@ script:
   - du -h *.img *.tar *.ext4
   - docker save slach/archstrap > rootfs.tar
   - tar -tvf rootfs.tar
+  - docker run -it --rm slach/archstrap whereis ls
