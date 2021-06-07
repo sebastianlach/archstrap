@@ -33,20 +33,18 @@ RUN tar -C / -zxf bootstrap.tar.gz
 ###############################################################################
 
 FROM scratch AS bootstrap
-COPY --from=0 /root.x86_64 /bootstrap
+COPY --from=0 /root.x86_64 /
 
 ###############################################################################
 
-FROM bootstrap
-
-RUN ls -la /etc
+FROM bootstrap AS build
 
 # pacman mirrors
-#RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
-#RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
+RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
+RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
 
 # pacman configuration
-#RUN pacman-key --init && pacman-key --populate archlinux
+RUN pacman-key --init && pacman-key --populate archlinux
 RUN pacman -Syu --noconfirm && pacman -Sy --noconfirm git reflector
 RUN reflector --latest 16 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
