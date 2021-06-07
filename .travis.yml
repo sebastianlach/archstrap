@@ -18,8 +18,7 @@ script:
   - invoke extract
   # - invoke images
   # - invoke download
-  - du -h *.img *.tar *.ext4
-  - docker save slach/archstrap > rootfs.tar
-  - tar -tvf rootfs.tar
+  - du -h *.tar
   - docker run -it --rm slach/archstrap whereis ls
-  - docker run -it --rm slach/archstrap lsattr /etc
+  - docker run -it --rm slach/archstrap find /etc
+  - docker run -it --rm slach/archstrap ls -l /etc
