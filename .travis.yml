@@ -20,4 +20,4 @@ script:
   # - invoke download
   - du -h *.img *.tar *.ext4
   - docker save slach/archstrap > rootfs.tar
-  - tar -tzvf rootfs.tar
+  - tar -tvf rootfs.tar
