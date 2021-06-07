@@ -28,6 +28,11 @@ RUN gpg --keyserver-options auto-key-retrieve\
         --verify bootstrap.tar.gz.sig\
         bootstrap.tar.gz
 
+# verify checksums
+RUN md5sum bootstrap.tar.gz
+RUN sha1sum bootstrap.tar.gz
+
+# extract files
 RUN tar -C / -zxf bootstrap.tar.gz
 
 ###############################################################################
