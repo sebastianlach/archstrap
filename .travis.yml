@@ -20,5 +20,6 @@ script:
   # - invoke download
   - du -h *.tar
   - docker run -it --rm slach/archstrap whereis ls
-  - docker run -it --rm slach/archstrap find /etc -ls
+  - docker run -it --rm slach/archstrap find /etc -maxdepth 1 -ls
+  - docker run -it --rm slach/archstrap find / -maxdepth 1 -ls
   - docker run -it --rm slach/archstrap ls -l /etc
