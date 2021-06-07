@@ -39,6 +39,8 @@ RUN tar -C / -zxf bootstrap.tar.gz
 
 FROM scratch AS bootstrap
 COPY --from=0 /root.x86_64 /
+
+# glibc workaround
 RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst && \
     curl -LO "https://repo.archlinuxcn.org/x86_64/$patched_glibc" && \
     bsdtar -C / -xvf "$patched_glibc"
@@ -67,6 +69,7 @@ RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
     xargs pacman -Sy --noconfirm && pacman -Scc --noconfirm
 
 # add user
+ARG user_login=guest
 RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${user_login}
 USER ${user_login}
 WORKDIR /home/${user_login}
