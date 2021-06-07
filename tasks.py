@@ -47,7 +47,7 @@ def extract(context, docs=False):
 @task
 def images(context):
     """
-    docker run -v $PWD:/data --rm --privileged slach/genextimage root.tar root.ext4 10G
-    docker run -v $PWD:/data --rm --privileged slach/genextimage home.tar home.ext4 2G
+    docker run -v $PWD:/data --rm --privileged slach/genextimage root.tar root.img 10G
+    docker run -v $PWD:/data --rm --privileged slach/genextimage home.tar home.img 2G
     """
     run(context, images.__doc__)
