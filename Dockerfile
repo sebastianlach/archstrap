@@ -34,9 +34,10 @@ RUN tar -C / -zxvf bootstrap.tar.gz
 # 2nd stage
 # -----------------------------------------------------------------------------
 FROM scratch AS build
-ADD http://mirror.rackspace.com/archlinux/iso/latest/archlinux-bootstrap-2021.06.01-x86_64.tar.gz /
-#COPY --from=0 /root.x86_64 /bootstrap
+COPY --from=0 /root.x86_64 /bootstrap
+COPY --from=0 /root.x86_64 /
 
+# stage
 FROM scratch
 
 # pacman mirrors
