@@ -41,6 +41,7 @@ FROM bootstrap AS build
 
 # pacman mirrors
 RUN find /etc
+RUN ls /etc
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
 RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
 
