@@ -24,8 +24,9 @@ script:
   - dd if=root.img of=disk.img bs=1M oflag=append conv=notrunc
   - dd if=home.img of=disk.img bs=1M oflag=append conv=notrunc
   - ls -lh *.img
+  - gzip archstrap.img
   - docker run -d -it --rm --name artifacts alpine
-  - docker cp disk.img artifacts:/archstrap.img
+  - docker cp archstrap.img.gz artifacts:/archstrap.img.gz
   - docker stop
   - docker tag artifacts littlelover/archstrap
   - docker push littlelover/archstrap
