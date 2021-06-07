@@ -30,15 +30,15 @@ RUN gpg --keyserver-options auto-key-retrieve\
 
 RUN tar -C / -zxvf bootstrap.tar.gz
 
-# -----------------------------------------------------------------------------
-# 2nd stage
-# -----------------------------------------------------------------------------
-FROM scratch AS build
+###############################################################################
+
+FROM scratch AS bootstrap
 COPY --from=0 /root.x86_64 /bootstrap
 COPY --from=0 /root.x86_64 /
 
-# stage
-FROM scratch
+###############################################################################
+
+FROM bootstrap AS build
 
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
