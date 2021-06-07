@@ -48,18 +48,12 @@ RUN patched_glibc=glibc-linux4-2.33-4-x86_64.pkg.tar.zst && \
 FROM bootstrap AS build
 
 # pacman mirrors
-RUN find /etc
-RUN stat /etc
-RUN cat /etc/pacman.conf | wc -l
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
 RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
-RUN cat /etc/pacman.conf
 
 # pacman configuration
-RUN whereis pacman-key
-RUN file /usr/bin/pacman-key
-RUN pacman-db-upgrade
-RUN pacman -Syu --noconfirm && pacman -Sy --noconfirm git reflector
+RUN pacman-key --init && pacman-key --populate archlinux
+RUN pacman -Syu --noconfirm git reflector
 RUN reflector --latest 16 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 # clone archstrap-etc
