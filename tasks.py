@@ -38,7 +38,7 @@ def download(context):
 def extract(context, docs=False):
     """
     mkdir -p data
-    tar -xf archstrap.tar -C data && rm -rf archstrap.tar
+    tar -xf archstrap.tar -C data
     tar -cf root.tar --exclude=home -C data .
     tar -cf home.tar -C data/home .
     """
