@@ -19,11 +19,6 @@ RUN xargs -I% wget -O bootstrap.tar.gz % < bootstrap.url
 RUN xargs -I% wget -O bootstrap.tar.gz.sig %.sig < bootstrap.url
 
 # verify archlinux bootstrap signature
-RUN gpg --locate-keys\
-        pierre@archlinux.de\
-        allan@archlinux.org\
-        bpiotrowski@archlinux.org\
-        anthraxx@archlinux.org
 RUN gpg --keyserver-options auto-key-retrieve\
         --verify bootstrap.tar.gz.sig\
         bootstrap.tar.gz
