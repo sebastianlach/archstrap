@@ -9,7 +9,7 @@ def clean(context):
     context.run("rm -rf data {archstrap,root,home}.tar {boot,root,home}.img")
 
 @task
-def build(context, cache=False):
+def build(context, cache=True):
     """
     docker build {} --target build --tag slach/archstrap \
         --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux .
