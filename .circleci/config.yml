@@ -17,7 +17,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: "Build image"
-          command: "docker build ."
+          command: "docker build --tag slach/archstrap --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux ."
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
