@@ -9,9 +9,9 @@ def clean(context):
     context.run("rm -rf data {archstrap,root,home}.tar {boot,root,home}.img")
 
 @task
-def build(context, cache=False):
+def build(context, cache=True):
     """
-    docker build {} --target build --tag slach/archstrap \
+    docker build {} --tag slach/archstrap \
         --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux .
     """
     run(context, build.__doc__.format('--no-cache' if not cache else ''))
@@ -38,7 +38,7 @@ def download(context):
 def extract(context, docs=False):
     """
     mkdir -p data
-    tar -xf archstrap.tar -C data && rm -rf archstrap.tar
+    tar -xf archstrap.tar -C data
     tar -cf root.tar --exclude=home -C data .
     tar -cf home.tar -C data/home .
     """
