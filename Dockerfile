@@ -61,11 +61,13 @@ RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
     xargs pacman -Sy --noconfirm && pacman -Scc --noconfirm
 
 # systemctl configuration
-systemctl enable slim
+RUN systemctl enable slim
 
 # add user
 ARG user_login=guest
 RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${user_login}
+RUN echo guest | passwd --stdin guest
+
 USER ${user_login}
 WORKDIR /home/${user_login}
 RUN git clone --no-checkout https://github.com/sebastianlach/archstrap-home.git
