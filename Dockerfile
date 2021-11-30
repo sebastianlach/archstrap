@@ -60,6 +60,9 @@ RUN git checkout HEAD /etc/pacman.d/pkglist
 RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
     xargs pacman -Sy --noconfirm && pacman -Scc --noconfirm
 
+# systemctl configuration
+systemctl enable slim
+
 # add user
 ARG user_login=guest
 RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${user_login}
