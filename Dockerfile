@@ -66,10 +66,13 @@ RUN systemctl enable slim
 # configure root
 RUN echo 'root:root' | chpasswd
 
-# add user
-ARG login=guest
-RUN useradd -m -g users -G wheel,docker -s /bin/zsh -p ${login} ${login}
+# generate locale
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
 
+# configure default user
+ARG login=guest
+RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${login}
+RUN echo "${login}:${login}" | chpasswd
 USER ${login}
 WORKDIR /home/${login}
 RUN git clone --no-checkout https://github.com/sebastianlach/archstrap-home.git
