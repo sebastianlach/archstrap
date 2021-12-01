@@ -63,6 +63,9 @@ RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
 # systemctl configuration
 RUN systemctl enable slim
 
+# configure root
+RUN echo 'root:root' | chpasswd
+
 # add user
 ARG login=guest
 RUN useradd -m -g users -G wheel,docker -s /bin/zsh -p ${login} ${login}
