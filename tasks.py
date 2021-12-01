@@ -12,7 +12,9 @@ def clean(context):
 def build(context, cache=True):
     """
     docker build {} --tag slach/archstrap \
-        --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux .
+        --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux \
+        --build-arg login=slach \
+        .
     """
     run(context, build.__doc__.format('--no-cache' if not cache else ''))
 
