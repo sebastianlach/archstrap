@@ -1,3 +1,6 @@
 [submodule "archstrap-home"]
 	path = home
 	url = https://github.com/sebastianlach/archstrap-home
+[submodule "etc"]
+	path = etc
+	url = git@github.com:sebastianlach/etc.git
