@@ -18,7 +18,7 @@ jobs:
       - setup_remote_docker:
           version: 20.10.11
       - run:
-          name: "Build image"
+          name: "Build docker image"
           command: >
             docker build
             --tag slach/archstrap
@@ -33,8 +33,10 @@ jobs:
           username: $DOCKERHUB_LOGIN
           password: $DOCKERHUB_PASSWORD
     steps:
+      - setup_remote_docker:
+          version: 20.10.11
       - run:
-          name: "Display kernel version"
+          name: "Push docker image"
           command: docker push slach/archstrap
 
 workflows:
