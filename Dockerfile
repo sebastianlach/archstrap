@@ -48,17 +48,15 @@ RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mi
 # pacman configuration
 ADD etc/pacman.conf /etc/pacman.conf
 RUN pacman-key --init && pacman-key --populate archlinux
-RUN pacman -Syu --noconfirm reflector
+RUN pacman -Syu --noconfirm reflector git
 RUN reflector --latest 16 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
-# clone archstrap-etc
-RUN pacman -Syu --noconfirm git
+# populate etc
 WORKDIR /etc
-RUN git clone --no-checkout https://github.com/sebastianlach/archstrap-etc.git
-RUN mv archstrap-etc/.git .git && rmdir archstrap-etc
+COPY etc/.git .git
+RUN git reset --hard HEAD && \
 
 # install packages from pkglist
-RUN git checkout HEAD /etc/pacman.d/pkglist
 RUN cat /etc/pacman.d/pkglist | cut -d' ' -f1 | \
     xargs pacman -Sy --noconfirm && \
     pacman -Scc --noconfirm
