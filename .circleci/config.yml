@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: docker:20.10.11-git
         auth:
-          username: $DOCKERHUB_LOGIN
+          username: slach
           password: $DOCKERHUB_PASSWORD
     steps:
       - run:
