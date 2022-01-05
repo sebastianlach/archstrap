@@ -44,7 +44,7 @@ RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
 RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
 
 # todo
-RUN ls -la /
+RUN chmod -R 777 . && ls -la .
 
 # pacman configuration
 ADD etc/pacman.conf /etc/pacman.conf
