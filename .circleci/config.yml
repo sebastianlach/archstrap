@@ -16,7 +16,7 @@ jobs:
       - run: uname -a
       - checkout
       - run: git submodule sync --recursive && git submodule update --recursive --init
-      - setup_remote_docker
+      #- setup_remote_docker
       - run:
           name: "Build image"
           command: "docker build --tag slach/archstrap --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux ."
