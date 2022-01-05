@@ -26,7 +26,7 @@ jobs:
             --build-arg login=slach
             .
 
-  upload:
+  push:
     docker:
       - image: docker:20.10.11-git
         auth:
@@ -40,9 +40,9 @@ jobs:
           command: docker push slach/archstrap
 
 workflows:
-  build_and_upload:
+  build-and-push:
     jobs:
       - build
-      - upload:
+      - push:
           requires:
             - build
