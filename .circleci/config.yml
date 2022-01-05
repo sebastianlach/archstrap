@@ -5,6 +5,9 @@ jobs:
   build:
     docker:
       - image: docker:20.10.11-git
+        auth:
+          username: $DOCKERHUB_LOGIN
+          password: $DOCKERHUB_PASSWORD
     steps:
       - run:
           name: "Display kernel version"
@@ -21,28 +24,15 @@ jobs:
           name: "Build docker image"
           command: >
             docker build
-            --tag slach/archstrap
+            --tag slach/archstrap:${CIRCLE_SHA1}
             --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux
             --build-arg login=slach
             .
-
-  push:
-    docker:
-      - image: docker:20.10.11-git
-        auth:
-          username: $DOCKERHUB_LOGIN
-          password: $DOCKERHUB_PASSWORD
-    steps:
-      - setup_remote_docker:
-          version: 20.10.11
       - run:
           name: "Push docker image"
-          command: docker push slach/archstrap
+          command: docker push slach/archstrap:${CIRCLE_SHA1}
 
 workflows:
   build-and-push:
     jobs:
       - build
-      - push:
-          requires:
-            - build
