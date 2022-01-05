@@ -30,7 +30,9 @@ jobs:
             .
       - run:
           name: "Push docker image"
-          command: docker push slach/archstrap
+          command: |
+            docker login
+            docker push slach/archstrap
 
 workflows:
   build-and-push:
