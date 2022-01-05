@@ -57,8 +57,9 @@ RUN mv archstrap-etc/.git .git && rmdir archstrap-etc
 
 # install packages from pkglist
 RUN git checkout HEAD /etc/pacman.d/pkglist
-RUN awk -F'[/ ]' '! /^local\// { print $2 }' /etc/pacman.d/pkglist | \
-    xargs pacman -Sy --noconfirm && pacman -Scc --noconfirm
+RUN cat /etc/pacman.d/pkglist | cut -d' ' -f1 | \
+    xargs pacman -Sy --noconfirm && \
+    pacman -Scc --noconfirm
 
 # systemctl configuration
 RUN systemctl enable slim
