@@ -29,11 +29,13 @@ jobs:
   upload:
     docker:
       - image: docker:20.10.11-git
+       auth:
+          username: $DOCKERHUB_LOGIN
+          password: $DOCKERHUB_PASSWORD
     steps:
       - run:
           name: "Display kernel version"
-          command: uname -a
-      - checkout
+          command: docker push slach/archstrap
 
 workflows:
   build_and_upload:
