@@ -19,11 +19,11 @@ jobs:
           version: 20.10.11
       - run:
           name: "Build image"
-          command: |
-            docker build \
-            --tag slach/archstrap \
-            --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux \
-            --build-arg login=slach \
+          command: >
+            docker build
+            --tag slach/archstrap
+            --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux
+            --build-arg login=slach
             .
 
 workflows:
