@@ -43,6 +43,9 @@ FROM bootstrap AS build
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
 RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
 
+# todo
+RUN ls -la .
+
 # pacman configuration
 ADD etc/pacman.conf /etc/pacman.conf
 RUN pacman-key --init && pacman-key --populate archlinux
