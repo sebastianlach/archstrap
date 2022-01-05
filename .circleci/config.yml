@@ -25,16 +25,7 @@ jobs:
               --build-arg login=slach
               .
 
-  push:
-    steps:
-      - run:
-          name: "Display kernel version"
-          command: uname -a
-
 workflows:
   build_and_push:
     jobs:
       - build
-      - push:
-          requires:
-            - build
