@@ -26,7 +26,19 @@ jobs:
             --build-arg login=slach
             .
 
+  upload:
+    docker:
+      - image: docker:20.10.11-git
+    steps:
+      - run:
+          name: "Display kernel version"
+          command: uname -a
+      - checkout
+
 workflows:
-  build_and_push:
+  build_and_upload:
     jobs:
       - build
+      - upload:
+          requires:
+            - build
