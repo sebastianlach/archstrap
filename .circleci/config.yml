@@ -24,13 +24,13 @@ jobs:
           name: "Build docker image"
           command: >
             docker build
-            --tag slach/archstrap:${CIRCLE_SHA1}
+            --tag slach/archstrap
             --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux
             --build-arg login=slach
             .
       - run:
           name: "Push docker image"
-          command: docker push slach/archstrap:${CIRCLE_SHA1}
+          command: docker push slach/archstrap
 
 workflows:
   build-and-push:
