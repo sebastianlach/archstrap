@@ -53,10 +53,7 @@ RUN reflector --latest 16 --protocol https --sort rate --save /etc/pacman.d/mirr
 
 # copy subrepositories
 WORKDIR /repo
-COPY .git /repo/.git
-COPY .gitmodules /repo/.gitmodules
-COPY etc /repo/etc
-COPY home /repo/home
+COPY .git .gitmodules etc home /repo/
 
 # populate etc
 WORKDIR /etc
