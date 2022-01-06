@@ -3,6 +3,7 @@ version: 2.1
 jobs:
 
   build:
+    resource_class: small
     docker:
       - image: docker:20.10.11-git
     steps:
@@ -32,16 +33,16 @@ jobs:
             docker push slach/archstrap:$CIRCLE_SHA1
 
   generate:
+    resource_class: small
     docker:
       - image: docker:20.10.11-git
     steps:
       - setup_remote_docker:
           version: 20.10.11
       - run:
-          name: "Build docker image"
+          name: "Extract tarball from docker image"
           command: |
-            docker pull slach/archstrap:$CIRCLE_SHA1
-            docker run -it -d --rm --name archstrap slach/archstrap sh
+            docker run -it -d --rm --name archstrap slach/archstrap:$CIRCLE_SHA1 sh
             docker export archstrap > archstrap.tar
             docker stop archstrap
       - run:
