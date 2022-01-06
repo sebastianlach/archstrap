@@ -12,9 +12,9 @@ jobs:
       - checkout
       - run: 
           name: "Checkout subrepositories"
-          command: |
-            git submodule sync --recursive &&
+          command: >
             git submodule update --recursive --init
+            git submodule sync --recursive
       - setup_remote_docker:
           version: 20.10.11
       - run:
