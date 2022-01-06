@@ -10,7 +10,7 @@ jobs:
           name: "Display kernel version"
           command: uname -a
       - checkout
-      - run: 
+      - run:
           name: "Checkout subrepositories"
           command: |
             git submodule update --recursive --init
@@ -21,7 +21,7 @@ jobs:
           name: "Build docker image"
           command: >
             docker build
-            --tag slach/archstrap
+            --tag slach/archstrap:$CIRCLE_SHA1
             --build-arg archlinux_mirror_url=https://mirrors.kernel.org/archlinux
             --build-arg login=slach
             .
@@ -29,7 +29,7 @@ jobs:
           name: "Push docker image"
           command: |
             docker login -u slach -p $DOCKERHUB_PASSWORD
-            docker push slach/archstrap
+            docker push slach/archstrap:$CIRCLE_SHA1
 
 workflows:
   build-and-push:
