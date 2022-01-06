@@ -46,9 +46,13 @@ jobs:
             docker export archstrap > archstrap.tar
             docker stop archstrap
       - run:
-          name: "Display size"
+          name: "Split tarball"
           command: |
-            ls -la *
+            mkdir -p tarball
+            tar -xf archstrap.tar -C tarball
+            tar -cf root.tar --exclude=home -C tarball .
+            tar -cf home.tar -C tarball/home .
+            ls -lah *
 
 workflows:
   build-and-push:
