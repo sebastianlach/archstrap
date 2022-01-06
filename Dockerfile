@@ -53,7 +53,7 @@ RUN reflector --latest 16 --protocol https --sort rate --save /etc/pacman.d/mirr
 
 # populate etc
 WORKDIR /etc
-RUN git clone --no-checkout repo && mv repo/.git .git && rm -rf repo
+RUN git clone --no-checkout etc repo && mv repo/.git .git && rm -rf repo
 RUN git reset --hard HEAD
 
 # install packages from pkglist
