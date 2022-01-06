@@ -46,20 +46,17 @@ jobs:
             docker export archstrap > archstrap.tar
             docker stop archstrap
       - run:
-          name: "Split tarball"
+          name: "Create filesystems"
           command: |
             mkdir -p tarball
             tar -xf archstrap.tar -C tarball
             tar -cf root.tar --exclude=home -C tarball .
             tar -cf home.tar -C tarball/home .
-            ls -lah *
-      - run:
-          name: "Create filesystems"
-          command: |
             docker run -v $PWD:/data --rm --privileged slach/tar2ext4:stable \
               root.tar root.img 10G
             docker run -v $PWD:/data --rm --privileged slach/tar2ext4:stable \
               home.tar home.img 2G
+            ls -lah *
 
 workflows:
   build-and-push:
