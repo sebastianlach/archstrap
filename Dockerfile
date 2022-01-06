@@ -51,9 +51,13 @@ RUN pacman-key --init && pacman-key --populate archlinux
 RUN pacman -Syu --noconfirm reflector git
 RUN reflector --latest 16 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
+# copy all files
+WORKDIR /repo
+COPY . /repo
+
 # populate etc
 WORKDIR /etc
-RUN git clone --no-checkout etc repo && mv repo/.git .git && rm -rf repo
+RUN git clone --no-checkout /repo/etc tmp && mv tmp/.git .git && rm -rf tmp
 RUN git reset --hard HEAD
 
 # install packages from pkglist
