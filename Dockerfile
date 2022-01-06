@@ -57,6 +57,7 @@ COPY .git .
 COPY .gitmodules .
 COPY etc .
 COPY home .
+RUN ls -la /repo
 
 # populate etc
 WORKDIR /etc
