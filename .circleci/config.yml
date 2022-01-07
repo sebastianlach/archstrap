@@ -71,4 +71,3 @@ workflows:
       - filesystems:
           requires:
             - build
-            - bootloader
