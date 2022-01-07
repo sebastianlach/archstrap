@@ -81,7 +81,7 @@ jobs:
             docker commit distro slach/distro:$CIRCLE_SHA1
             docker stop distro
             docker login -u slach -p $DOCKERHUB_PASSWORD
-            docker push slach/distro:$CIRCLE_SHA1$
+            docker push slach/distro:$CIRCLE_SHA1
 
 workflows:
   build-and-push:
