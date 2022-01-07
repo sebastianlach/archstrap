@@ -63,6 +63,27 @@ jobs:
           name: "List available files"
           command: |
             ls -lah `pwd`
+      - run:
+          name: "Merge filesystems"
+          command: |
+            touch archstrap.img
+            dd if=groob.img of=archstrap.img bs=1M oflag=append conv=notrunc
+            dd if=root.img of=archstrap.img bs=1M oflag=append conv=notrunc
+            dd if=home.img of=archstrap.img bs=1M oflag=append conv=notrunc
+            ls -lh *.img
+      - run:
+          name: "Compress distribution image"
+          command: |
+            gzip archstrap.img
+      - run:
+          name: "Push distribution image"
+          command: |
+            docker run -d -it --rm --name distro alpine sh
+            docker cp archstrap.img.gz distro:/archstrap.img.gz
+            docker stop distro
+            docker commit distro slach/distro:$CIRCLE_SHA1
+            docker login -u slach -p $DOCKERHUB_PASSWORD
+            docker push slach/distro:$CIRCLE_SHA1$
 
 workflows:
   build-and-push:
