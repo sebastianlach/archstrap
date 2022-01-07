@@ -32,13 +32,11 @@ jobs:
             docker login -u slach -p $DOCKERHUB_PASSWORD
             docker push slach/archstrap:$CIRCLE_SHA1
 
-  generate:
-    resource_class: small
-    docker:
-      - image: docker:20.10.11-git
+  filesystems:
+    machine:
+      image: ubuntu-2004:202111-02
+      resource_class: medium
     steps:
-      - setup_remote_docker:
-          version: 20.10.11
       - run:
           name: "Extract tarball from docker image"
           command: |
@@ -52,14 +50,17 @@ jobs:
             tar -xf archstrap.tar -C tarball
             tar -cf root.tar --exclude=home -C tarball .
             tar -cf home.tar -C tarball/home .
-            docker run -v `pwd`:/data --rm --privileged slach/tar2ext4:stable root.tar root.img 10G
-            docker run -v `pwd`:/data --rm --privileged slach/tar2ext4:stable home.tar home.img 2G
-            ls -lah *
+            ls -lah `pwd`
+            docker run -v `pwd`:/data --rm slach/tar2ext4:stable home.tar home.img 2G
+            docker run -v `pwd`:/data --rm slach/tar2ext4:stable root.tar root.img 10G
+            ls -lah `pwd`
+      - store_artifacts:
+          path: home.img
 
 workflows:
   build-and-push:
     jobs:
       - build
-      - generate:
+      - filesystems:
           requires:
             - build
