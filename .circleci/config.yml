@@ -52,9 +52,9 @@ jobs:
             tar -xf archstrap.tar -C tarball
             tar -cf root.tar --exclude=home -C tarball .
             tar -cf home.tar -C tarball/home .
-            docker run -v $PWD:/data --rm --privileged slach/tar2ext4:stable \
+            docker run -v ./:/data --rm --privileged slach/tar2ext4:stable \
               root.tar root.img 10G
-            docker run -v $PWD:/data --rm --privileged slach/tar2ext4:stable \
+            docker run -v ./:/data --rm --privileged slach/tar2ext4:stable \
               home.tar home.img 2G
             ls -lah *
 
