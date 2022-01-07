@@ -68,6 +68,8 @@ jobs:
             dd if=groob.img of=archstrap.img bs=1M oflag=append conv=notrunc
             dd if=root.img of=archstrap.img bs=1M oflag=append conv=notrunc
             dd if=home.img of=archstrap.img bs=1M oflag=append conv=notrunc
+            parted -s -a none archstrap.img mkpart primary ext4 1025MiB 11265MiB
+            parted -s -a none archstrap.img mkpart primary ext4 11265MiB 100%
             ls -lh *.img
       - run:
           name: "Compress distribution image"
