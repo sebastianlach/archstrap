@@ -80,8 +80,8 @@ jobs:
           command: |
             docker run -d -it --rm --name distro alpine sh
             docker cp archstrap.img.gz distro:/archstrap.img.gz
-            docker stop distro
             docker commit distro slach/distro:$CIRCLE_SHA1
+            docker stop distro
             docker login -u slach -p $DOCKERHUB_PASSWORD
             docker push slach/distro:$CIRCLE_SHA1$
 
