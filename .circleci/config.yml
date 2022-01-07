@@ -32,6 +32,18 @@ jobs:
             docker login -u slach -p $DOCKERHUB_PASSWORD
             docker push slach/archstrap:$CIRCLE_SHA1
 
+  bootloader:
+    machine:
+      image: ubuntu-2004:202111-02
+      resource_class: medium
+    steps:
+      - run:
+          name: "Generate bootloader image"
+          command: |
+            docker run -v `pwd`:/data --rm slach/groob
+      - store_artifacts:
+          path: groob.img
+
   filesystems:
     machine:
       image: ubuntu-2004:202111-02
@@ -61,6 +73,7 @@ workflows:
   build-and-push:
     jobs:
       - build
+      - bootloader
       - filesystems:
           requires:
             - build
