@@ -1,7 +1,6 @@
 # archstrap
 
-[![Build Status](https://travis-ci.org/sebastianlach/archstrap.svg?branch=master)](https://travis-ci.org/sebastianlach/archstrap)
-
+[![CircleCI](https://circleci.com/gh/sebastianlach/archstrap/tree/master.svg?style=svg)](https://circleci.com/gh/sebastianlach/archstrap/tree/master)
 
 ```shell
 git clone --recursive git@github.com:sebastianlach/archstrap.git
