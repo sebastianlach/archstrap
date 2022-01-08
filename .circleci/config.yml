@@ -40,7 +40,7 @@ jobs:
       - run:
           name: "Extract tarball from docker image"
           command: |
-            docker run -it -d --rm --name archstrap slach/archstrap:$CIRCLE_SHA1 sh
+            docker run -d --rm --name archstrap slach/archstrap:$CIRCLE_SHA1 sleep infinity
             docker export archstrap > archstrap.tar
             docker stop archstrap
       - run:
