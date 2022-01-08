@@ -84,12 +84,11 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
 ARG login=guest
 RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${login}
 RUN echo "${login}:${login}" | chpasswd
+
+# configure home directory
 USER ${login}
 WORKDIR /home/${login}
-RUN git clone --no-checkout https://github.com/sebastianlach/archstrap-home.git
-RUN mv archstrap-home/.git .git && \
-    rmdir archstrap-home && \
-    git reset --hard HEAD && \
-    git submodule update --init --recursive
+RUN git clone --no-checkout /repo/home tmp && mv tmp/.git .git && rm -rf tmp
+RUN git reset --hard HEAD && git submodule update --init --recursive
 
 CMD ["zsh"]
