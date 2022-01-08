@@ -56,10 +56,10 @@ jobs:
           name: "Generate bootloader image"
           command: >
             docker run
-              -v `pwd`:/data
-              -v `readlink -f tarball/boot`:/boot
-              --rm
-              slach/groob
+            -v `pwd`:/data
+            -v `readlink -f tarball/boot`:/boot
+            --rm
+            slach/groob
       - run:
           name: "List available files"
           command: |
