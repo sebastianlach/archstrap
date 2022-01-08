@@ -54,8 +54,12 @@ jobs:
             docker run -v `pwd`:/data --rm slach/tar2ext4:stable root.tar root.img 10G ROOT
       - run:
           name: "Generate bootloader image"
-          command: |
-            docker run -v `pwd`:/data -v tarball/boot:/boot --rm slach/groob
+          command: >
+            docker run
+              -v `pwd`:/data
+              -v `readlink -f tarball/boot`:/boot
+              --rm
+              slach/groob
       - run:
           name: "List available files"
           command: |
