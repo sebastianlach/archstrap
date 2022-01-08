@@ -47,8 +47,8 @@ jobs:
           name: "Create filesystems"
           command: |
             mkdir -p tarball
-            ls -lah tarball
             tar -xf archstrap.tar -C tarball
+            ls -lah tarball/*
             tar -cf root.tar --exclude=home --exclude=boot -C tarball .
             tar -cf home.tar -C tarball/home .
             docker run -v `pwd`:/data --rm slach/tar2ext4:stable home.tar home.img 2G HOME
