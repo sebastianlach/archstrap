@@ -47,6 +47,7 @@ jobs:
           name: "Create filesystems"
           command: |
             mkdir -p tarball
+            ls -lah tarball/boot
             tar -xf archstrap.tar -C tarball
             tar -cf root.tar --exclude=home --exclude=boot -C tarball .
             tar -cf home.tar -C tarball/home .

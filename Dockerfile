@@ -89,4 +89,7 @@ RUN mv archstrap-home/.git .git && \
     git reset --hard HEAD && \
     git submodule update --init --recursive
 
+# create an initial ramdisk
+RUN mkinitcpio -P
+
 CMD ["zsh"]
