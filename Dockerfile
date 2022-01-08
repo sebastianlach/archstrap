@@ -68,6 +68,9 @@ RUN cat /etc/pacman.d/pkglist | cut -d' ' -f1 | \
     xargs pacman -Sy --noconfirm && \
     pacman -Scc --noconfirm
 
+# create an initial ramdisk
+RUN mkdir /boot && mkinitcpio -P
+
 # systemctl configuration
 RUN systemctl enable slim
 
@@ -88,8 +91,5 @@ RUN mv archstrap-home/.git .git && \
     rmdir archstrap-home && \
     git reset --hard HEAD && \
     git submodule update --init --recursive
-
-# create an initial ramdisk
-RUN mkinitcpio -P
 
 CMD ["zsh"]
