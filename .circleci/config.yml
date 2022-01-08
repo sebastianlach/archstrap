@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
 
-  build:
+  image:
     resource_class: small
     docker:
       - image: docker:20.10.11-git
@@ -85,9 +85,9 @@ jobs:
             docker push slach/distro:$CIRCLE_SHA1
 
 workflows:
-  build-and-push:
+  build:
     jobs:
-      - build
+      - image
       - filesystems:
           requires:
-            - build
+            - image
