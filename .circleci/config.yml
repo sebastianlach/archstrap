@@ -87,6 +87,8 @@ jobs:
             docker stop distro
             docker login -u slach -p $DOCKERHUB_PASSWORD
             docker push slach/distro:$CIRCLE_SHA1
+      - store_artifacts:
+          path: archstrap.img.gz
 
 workflows:
   build:
