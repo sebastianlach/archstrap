@@ -50,8 +50,8 @@ jobs:
             tar -xf archstrap.tar -C tarball
             tar -cf root.tar --exclude=home --exclude=boot -C tarball .
             tar -cf home.tar -C tarball/home .
-            docker run -v `pwd`:/data --rm slach/tar2ext4:stable home.tar home.img 2G
-            docker run -v `pwd`:/data --rm slach/tar2ext4:stable root.tar root.img 10G
+            docker run -v `pwd`:/data --rm slach/tar2ext4:stable home.tar home.img 2G HOME
+            docker run -v `pwd`:/data --rm slach/tar2ext4:stable root.tar root.img 10G ROOT
       - run:
           name: "Generate bootloader image"
           command: |
