@@ -69,7 +69,7 @@ RUN cat /etc/pacman.d/pkglist | cut -d' ' -f1 | \
     pacman -Scc --noconfirm
 
 # create an initial ramdisk
-RUN mkinitcpio -P
+RUN mkinitcpio -p linux
 
 # systemctl configuration
 RUN systemctl enable slim
