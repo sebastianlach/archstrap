@@ -62,8 +62,6 @@ COPY home /repo/home
 WORKDIR /etc
 RUN git clone --no-checkout /repo/etc tmp && mv tmp/.git .git && rm -rf tmp
 RUN git reset --hard HEAD
-RUN chown -R root:root /etc
-RUN chmod +t /etc/sudoers
 
 # install packages from pkglist
 RUN cat /etc/pacman.d/pkglist | cut -d' ' -f1 | \
@@ -85,7 +83,6 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
 # configure default user
 ARG login=guest
 RUN useradd -m -g users -G wheel,docker -s /bin/zsh -N ${login}
-RUN chown -R ${login}:users /home/${login}
 RUN echo "${login}:${login}" | chpasswd
 
 # configure home directory
