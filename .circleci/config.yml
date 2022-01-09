@@ -48,6 +48,9 @@ jobs:
           command: |
             mkdir -p tarball
             tar -xf archstrap.tar -C tarball
+            chown -R root:root tarball
+            chmod +t tarball/usr/bin/sudo
+            chown -R 1000:1000 tarball/home
             ls -lah tarball/*
             tar -cf root.tar --exclude=home --exclude=boot -C tarball .
             tar -cf home.tar -C tarball/home .
