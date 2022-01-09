@@ -50,9 +50,7 @@ jobs:
             USER_ID=1000
             mkdir -p tarball
             sudo tar -xf archstrap.tar --preserve-permissions --same-owner -C tarball
-            ls -lah tarball/*
             chmod +t tarball/usr/bin/sudo
-            ls -lah tarball/*
             tar -cf root.tar --exclude=home --exclude=boot -C tarball .
             tar -cf home.tar -C tarball/home .
             docker run -v `pwd`:/data --rm slach/tar2ext4:stable home.tar home.img 2G HOME
