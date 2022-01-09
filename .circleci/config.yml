@@ -51,8 +51,6 @@ jobs:
             mkdir -p tarball
             tar -xf archstrap.tar --preserve-permissions --same-owner -C tarball
             ls -lah tarball/*
-            chown -R root:root tarball
-            chown -R $USER_ID:$GROUP_ID tarball/home/*
             chmod +t tarball/usr/bin/sudo
             ls -lah tarball/*
             tar -cf root.tar --exclude=home --exclude=boot -C tarball .
