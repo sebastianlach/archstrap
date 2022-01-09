@@ -63,6 +63,7 @@ WORKDIR /etc
 RUN git clone --no-checkout /repo/etc tmp && mv tmp/.git .git && rm -rf tmp
 RUN git reset --hard HEAD
 
+
 # install packages from pkglist
 RUN cat /etc/pacman.d/pkglist | cut -d' ' -f1 | \
     xargs pacman -Sy --noconfirm && \
@@ -82,7 +83,7 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
 
 # configure default user
 ARG login=guest
-RUN useradd -m -g users -G wheel,docker -s /bin/zsh ${login}
+RUN useradd -m -N -g users -G wheel,docker -s /bin/zsh ${login}
 RUN echo "${login}:${login}" | chpasswd
 
 # configure home directory
