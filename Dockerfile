@@ -84,12 +84,12 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
 
 # configure default user
 ARG login=guest
-RUN useradd -M -d /home/${login} -g users -G wheel,docker -s /bin/zsh -N ${login}
+RUN useradd -m -g users -G wheel,docker -s /bin/zsh -N ${login}
+RUN chown -R ${login}:users /home/${login}
 RUN echo "${login}:${login}" | chpasswd
 
 # configure home directory
 USER ${login}
-RUN mkdir -p /home/${login}
 WORKDIR /home/${login}
 RUN git clone --no-checkout /repo/home tmp && mv tmp/.git .git && rm -rf tmp
 RUN git reset --hard HEAD && git submodule update --init --recursive
