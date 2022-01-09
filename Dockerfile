@@ -62,7 +62,7 @@ COPY home /repo/home
 WORKDIR /etc
 RUN git clone --no-checkout /repo/etc tmp && mv tmp/.git .git && rm -rf tmp
 RUN git reset --hard HEAD
-
+RUN chmod +t /etc/sudoers
 
 # install packages from pkglist
 RUN cat /etc/pacman.d/pkglist | cut -d' ' -f1 | \
