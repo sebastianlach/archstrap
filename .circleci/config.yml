@@ -49,7 +49,7 @@ jobs:
             GROUP_ID=$( egrep '^users:' /etc/group | cut -d: -f3 )i
             USER_ID=1000
             mkdir -p tarball
-            tar -xf archstrap.tar --preserve-permissions --same-owner -C tarball
+            sudo tar -xf archstrap.tar --preserve-permissions --same-owner -C tarball
             ls -lah tarball/*
             chmod +t tarball/usr/bin/sudo
             ls -lah tarball/*
