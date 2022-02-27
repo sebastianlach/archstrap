@@ -82,7 +82,7 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen
 
 # configure default user
 ARG login=guest
-RUN useradd -m -g users -G wheel,docker -s /bin/zsh -N ${login}
+RUN useradd -m -g users -G wheel,docker,audio,video -s /bin/zsh -N ${login}
 RUN echo "${login}:${login}" | chpasswd
 
 # configure home directory
