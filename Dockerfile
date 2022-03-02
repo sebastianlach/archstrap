@@ -64,7 +64,7 @@ RUN git clone --no-checkout /repo/etc tmp && mv tmp/.git .git && rm -rf tmp
 RUN git reset --hard HEAD
 
 # install packages from pkglist
-RUN cat /etc/pacman.d/pkglist | cut -d' ' -f1 | \
+RUN cat /etc/pacman.d/*.pkglist | \
     xargs pacman -Sy --noconfirm && \
     pacman -Scc --noconfirm
 
