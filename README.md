@@ -1,7 +1,7 @@
 # `archstrap`
 
-[![CircleCI](https://circleci.com/gh/sebastianlach/archstrap/te/master.svg?style=svg)](https://circleci.com/gh/sebastianlach/archstrap/tree/master)
-[![Generic badge](https://img.shields.io/badge/license-GNU-green.svg)](https://shields.io/)
+[![CircleCI](https://circleci.com/gh/sebastianlach/archstrap/tree/master.svg?style=svg)](https://circleci.com/gh/sebastianlach/archstrap/tree/master)
+[![License](https://img.shields.io/badge/license-GNU-green.svg)](https://shields.io/)
 
 ### Build
 ```shell
