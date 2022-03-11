@@ -3,16 +3,15 @@
 ###############################################################################
 FROM alpine AS builder
 MAINTAINER root@slach.eu
-ARG archlinux_mirror_url=https://mirror.rackspace.com/archlinux
+ARG mirror=https://mirror.rackspace.com/archlinux
 
 # install required packages
 RUN apk add --no-cache gnupg
 
 # discover latest bootrap archive
-RUN wget -q -O - ${archlinux_mirror_url}/iso/latest/\
-    | egrep -Eo 'archlinux-bootstrap-[^<>"]*'\
-    | sort -n | head -n1\
-    | xargs -I% echo ${archlinux_mirror_url}/iso/latest/% > bootstrap.url
+RUN wget -q -O - ${mirror}/iso/latest/\
+    | egrep -Eo 'archlinux-bootstrap-[^<>"]*' | sort -n | head -n1\
+    | xargs -I% echo ${mirror}/iso/latest/% > bootstrap.url
 
 # download archlinux bootstrap
 RUN xargs -I% wget -O bootstrap.tar.gz % < bootstrap.url
@@ -40,6 +39,7 @@ COPY --from=0 /root.x86_64 /
 ### 3rd stage
 ###############################################################################
 FROM bootstrap AS build
+ARG flavour=device/generic
 
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
@@ -61,7 +61,7 @@ COPY home /repo/home
 # populate etc
 WORKDIR /etc
 RUN git clone --no-checkout /repo/etc tmp && mv tmp/.git .git && rm -rf tmp
-RUN git reset --hard HEAD
+RUN git reset --hard HEAD && git checkout ${flavour}
 
 # install packages from pkglist
 RUN cat /etc/pacman.d/*.pkglist | \
