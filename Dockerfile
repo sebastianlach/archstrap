@@ -60,7 +60,7 @@ COPY home /repo/home
 
 # populate etc
 WORKDIR /etc
-RUN git clone --no-checkout /repo/etc tmp && mv tmp/.git .git && rm -rf tmp
+RUN git clone --no-checkout --no-single-branch /repo/etc tmp && mv tmp/.git .git && rm -rf tmp
 RUN git reset --hard HEAD && git checkout ${flavour}
 
 # install packages from pkglist
