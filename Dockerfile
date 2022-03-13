@@ -60,7 +60,7 @@ COPY home /repo/home
 
 # populate etc
 WORKDIR /etc
-RUN git clone --no-checkout --mirror /repo/etc .git && git config --bool core.bare false && git config --path core.worktree /etc
+RUN git clone --mirror /repo/etc .git && git config --bool core.bare false && git config --path core.worktree /etc
 RUN git fetch && git checkout --force ${flavour} && git reset --hard HEAD
 
 # install packages from pkglist
