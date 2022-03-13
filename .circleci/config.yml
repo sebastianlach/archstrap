@@ -15,6 +15,7 @@ jobs:
           name: "Checkout subrepositories"
           command: |
             git submodule update --recursive --init
+            git submodule update --recursive --remote --merge
             git submodule sync --recursive
       - setup_remote_docker:
           version: 20.10.11
