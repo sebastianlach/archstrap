@@ -4,3 +4,5 @@
 [submodule "etc"]
 	path = etc
 	url = git@github.com:sebastianlach/etc.git
+[submodule "home"]
+	url = git@github.com:sebastianlach/home.git
