@@ -60,8 +60,8 @@ COPY home /repo/home
 
 # populate etc
 WORKDIR /etc
-RUN git clone --no-checkout --mirror /repo/etc .git && git config --bool core.bare false && git config --path core.worktree .
-RUN git reset --hard HEAD && git pull --all && git checkout ${flavour}
+RUN git clone --no-checkout --mirror /repo/etc .git && git config --bool core.bare false && git config --path core.worktree /etc
+RUN git reset --hard HEAD && git checkout ${flavour} 
 
 # install packages from pkglist
 RUN cat /etc/pacman.d/*.pkglist | \
