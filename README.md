@@ -5,8 +5,9 @@
 
 ### Build
 ```shell
-docker build --tag slach/archstrap .
+docker build --build-arg flavour=device/generic --build-arg login=mylogin --tag slach/archstrap .
 ```
+
 ### Configure
 ```shell
 ln -s /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
