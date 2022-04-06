@@ -2,7 +2,7 @@
 ### 1st stage
 ###############################################################################
 FROM alpine AS builder
-MAINTAINER root@slach.eu
+LABEL org.opencontainers.image.authors="Sebastian Łach <root@slach.eu>"
 ARG mirror=https://mirror.rackspace.com/archlinux
 
 # install required packages
@@ -33,12 +33,14 @@ RUN tar -C / -zxf bootstrap.tar.gz
 ### 2nd stage
 ###############################################################################
 FROM scratch AS bootstrap
-COPY --from=0 /root.x86_64 /
+LABEL org.opencontainers.image.authors="Sebastian Łach <root@slach.eu>"
+COPY --from=builder /root.x86_64 /
 
 ###############################################################################
 ### 3rd stage
 ###############################################################################
 FROM bootstrap AS build
+LABEL org.opencontainers.image.authors="Sebastian Łach <root@slach.eu>"
 ARG flavour=device/generic
 
 # pacman mirrors
