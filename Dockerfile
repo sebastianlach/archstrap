@@ -1,7 +1,7 @@
 ###############################################################################
 ### 1st stage
 ###############################################################################
-FROM alpine AS builder
+FROM alpine:3 AS builder
 LABEL org.opencontainers.image.authors="Sebastian Łach <root@slach.eu>"
 ARG mirror=https://mirror.rackspace.com/archlinux
 
