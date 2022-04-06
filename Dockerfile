@@ -45,7 +45,7 @@ ARG flavour=device/generic
 
 # pacman mirrors
 RUN cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bck
-RUN cat /etc/pacman.d/mirrorlist.bck | awk -F# '{ print $2 }' > /etc/pacman.d/mirrorlist
+RUN awk -F# '{ print $2 }' < /etc/pacman.d/mirrorlist.bck > /etc/pacman.d/mirrorlist
 
 # pacman configuration
 ADD etc/pacman.conf /etc/pacman.conf
