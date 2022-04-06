@@ -10,7 +10,7 @@ RUN apk add --no-cache gnupg
 
 # discover latest bootrap archive
 RUN wget -q -O - ${mirror}/iso/latest/\
-    | egrep -Eo 'archlinux-bootstrap-[^<>"]*' | sort -n | head -n1\
+    | grep -Eo 'archlinux-bootstrap-[^<>"]*' | sort -n | head -n1\
     | xargs -I% echo ${mirror}/iso/latest/% > bootstrap.url
 
 # download archlinux bootstrap
